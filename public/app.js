@@ -35,6 +35,7 @@ function unirseSala() {
       div.textContent = `${data.nombre}: ${data.texto}`;
       document.getElementById('mensajes').appendChild(div);
     }
+    
 
     if (data.tipo === 'usuarios') {
       const lista = document.getElementById('listaUsuarios');
@@ -92,7 +93,7 @@ function unirseSala() {
 
 function enviarMensaje() {
   const mensaje = document.getElementById('mensajeInput').value;
-  socket.send(JSON.stringify({ tipo: 'mensaje', texto: mensaje }));
+  socket.send(JSON.stringify({ tipo: 'mensaje', texto}));
   const div = document.createElement('div');
   //div.textContent = `Tú: ${mensaje}`;
   document.getElementById('mensajes').appendChild(div);

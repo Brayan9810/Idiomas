@@ -54,13 +54,21 @@ wss.on('connection', (ws) => {
     }
 
     if (data.tipo === 'mensaje') {
-      const mensaje = JSON.stringify({ tipo: 'mensaje', texto: data.texto, nombre: ws.nombre });
+      const mensaje = JSON.stringify({
+        tipo: 'mensaje',
+        texto: data.texto,
+        nombre: ws.nombre
+      });
+
       if (salas[ws.idioma]) {
         salas[ws.idioma].forEach(cliente => {
-          if (cliente.readyState === WebSocket.OPEN) cliente.send(mensaje);
+          if (cliente.readyState === WebSocket.OPEN) {
+            cliente.send(mensaje);
+          }
         });
       }
     }
+
 
     if (['oferta', 'respuesta', 'ice'].includes(data.tipo)) {
       if (salas[ws.idioma]) {
