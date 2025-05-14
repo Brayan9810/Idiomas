@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aprende Idiomas</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <h1>Plataforma de Aprendizaje de Idiomas</h1>
+  
+  <section id="seleccionIdioma">
+    <label for="idioma">Selecciona un idioma:</label>
+    <select id="idioma">
+      <option value="ingles">Inglés</option>
+      <option value="frances">Francés</option>
+      <option value="aleman">Alemán</option>
+    </select>
+    <button onclick="unirseSala()">Unirse</button>
+  </section>
+
+  <section id="chat" class="oculto">
+    <h2>Chat en tiempo real</h2>
+    <div id="mensajes"></div>
+    <input type="text" id="mensajeInput" placeholder="Escribe tu mensaje"/>
+    <button onclick="enviarMensaje()">Enviar</button>
+  </section>
+
+  <section id="usuarios" class="oculto">
+    <h3>Usuarios en la sala:</h3>
+    <ul id="listaUsuarios"></ul>
+  </section>
+
+  <section id="videochat" class="oculto">
+    <h2>Videollamada</h2>
+    <video id="localVideo" autoplay muted></video>
+    <video id="remoteVideo" autoplay></video>
+    <button onclick="iniciarLlamada()">Iniciar llamada</button>
+  </section>
+
+  <div id="modalInvitacion" class="oculto">
+    <p id="mensajeInvitacion"></p>
+    <button onclick="aceptarInvitacion()">Aceptar</button>
+    <button onclick="rechazarInvitacion()">Rechazar</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
