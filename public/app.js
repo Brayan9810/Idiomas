@@ -14,7 +14,10 @@ function unirseSala() {
   document.getElementById('usuarios').classList.remove('oculto');
   document.getElementById('videochat').classList.remove('oculto');
 
-  socket = new WebSocket("ws://localhost:3000");
+  const socket = new WebSocket(
+  (location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host
+);
+
 
   socket.onopen = () => {
     socket.send(JSON.stringify({

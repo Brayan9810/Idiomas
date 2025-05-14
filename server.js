@@ -32,6 +32,14 @@ wss.on('connection', (ws) => {
   ws.on('message', (msg) => {
     const data = JSON.parse(msg);
 
+    if (data.tipo === 'registro') {
+      ws.nombre = data.nombre;
+      ws.idioma = data.idioma;
+      // Crea la sala si no existe
+      if (!salas[ws.idioma]) salas[ws.idioma] = [];
+      salas[ws.idioma].push(ws);
+    }
+
     if (data.tipo === 'join') {
       ws.idioma = data.idioma;
       ws.nombre = data.nombre || `Usuario${Math.floor(Math.random() * 1000)}`;
@@ -46,7 +54,7 @@ wss.on('connection', (ws) => {
     }
 
     if (data.tipo === 'mensaje') {
-      const mensaje = JSON.stringify({ tipo: 'mensaje', texto: data.texto , nombre:ws.nombre});
+      const mensaje = JSON.stringify({ tipo: 'mensaje', texto: data.texto, nombre: ws.nombre });
       if (salas[ws.idioma]) {
         salas[ws.idioma].forEach(cliente => {
           if (cliente.readyState === WebSocket.OPEN) cliente.send(mensaje);
